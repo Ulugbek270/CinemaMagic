@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ title }}
+{% endblock title %}
+
+
+{% block main %}
+
+<div class="d-flex justify-content-between mt-4">
+
+    <div class="col-9">
+
+        <div class="card">
+
+            <div class="card-header d-flex justify-content-between">
+                <h3>{{ cinema.title }}</h3>
+
+                <div class="d-flex justify-content-between">
+                    {% if request.user == cinema.author %}
+                    <a href="{% url 'update' cinema.pk %}" class="btn btn-warning mx-2">Изменить</a>
+                    <a href="{% url 'delete' cinema.pk %}" class="btn btn-danger mx-2">Удалить</a>
+                    {% endif %}
+                    <a href="{% url 'index' %}" class="btn btn-secondary mx-2">Назад</a>
+                </div>
+
+            </div>
+
+            <div class="card-body">
+                {% if cinema.video %}
+                <iframe width="100%" height="500" src="{{ cinema.video }}"
+                        title="Ребята первый раз дали отпор Пеннивайзу - Оно (2017) - Момент из фильма" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen>
+                </iframe>
+                {% else %}
+                <img height="500px"
+                     src="https://forum.endeavouros.com/uploads/default/original/2X/a/ab62dc01f05c1ee26d3c613bc4db6cd953a44b9b.png"
+                     class="card-img-top" alt="...">
+                {% endif %}
+
+                <div class="d-flex justify-content-between p-2 align-items-center">
+
+                    <div class="d-flex justify-content-between align-items-center">
+                        <img src="https://static.planetminecraft.com/files/avatar/331184.jpg" alt="" height="50"
+                             width="50" class="rounded-circle">
+                        <h4 class="mx-3">Автор:
+                            <a href="{% url 'profile' cinema.author.pk %}">
+                            {{ cinema.author }}
+                            </a>
+                        </h4>
+                    </div>
+
+                    <p>{{ cinema.created_at }}</p>
+                </div>
+
+                <h2>{{ cinema.category }}</h2>
+                <p>{{ cinema.context|linebreaks }}</p>
+
+                <span>Просмотры: {{ cinema.views }}</span>
+
+            </div>
+
+        </div>
+
+        <div class="card mt-4 p-3 bg-dark border-light text-light">
+            {% if request.user.is_authenticated %}
+            <form action="{% url 'save_comment' cinema.pk %}" method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+
+                <button type="submit" class="btn btn-secondary">Оставить комментарий</button>
+            </form>
+            {% else %}
+            <p class="text-light">Что бы оставить комментарий
+                <a href="{% url 'login' %}">Войдите</a>
+                или
+                <a href="{% url 'register' %}">Зарегистрируйтесь</a>
+            </p>
+            {% endif %}
+        </div>
+
+        {% for comment in comments %}
+        <div class="card mt-4 p-3 bg-dark border-light text-light">
+            <h3>{{ comment.user.username }}</h3>
+            <p class="small">{{ comment.created_at }}</p>
+            <p>{{ comment.text }}</p>
+        </div>
+        {% endfor %}
+
+    </div>
+
+
+    <div class="col-3 p-2">
+
+        {% for cinema in cinemas %}
+        <a href="{{ cinema.get_absolute_url }}" class="card mt-2">
+
+            {% if cinema.photo %}
+            <img height="200px" src="{{ cinema.photo.url }}" alt="" class="card-img-top">
+            {% else %}
+            <img height="200px"
+                 src="https://forum.endeavouros.com/uploads/default/original/2X/a/ab62dc01f05c1ee26d3c613bc4db6cd953a44b9b.png"
+                 class="card-img-top" alt="...">
+            {% endif %}
+
+            <div class="card-body">
+                <h5 class="card-title">{{ cinema.title }}</h5>
+            </div>
+
+        </a>
+        {% endfor %}
+    </div>
+
+
+</div>
+
+
+{% endblock main %}
+
+
+

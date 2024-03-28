@@ -1,0 +1,67 @@
+body{
+    background: url(../images/bg4.jpg) no-repeat;
+    background-size: cover;
+/*     margin-bottom: 60px;*/
+
+}
+
+.nav-item:hover {
+    color: white !important;
+}
+
+.main_con {
+         min-height: 1000px
+height:100%
+      color:red;
+}
+
+
+/* Navbar Styles */
+.navbar {
+    background-color: #343a40; /* Dark background color */
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: white; /* Navbar link text color */
+}
+
+.navbar-dark .navbar-toggler-icon {
+    background-color: white; /* Navbar toggler icon color */
+}
+
+/* Footer Styles */
+footer {
+    position:sticky;
+    top:100vh
+    height:100px;
+    background-color: #343a40; /* Dark background color */
+    color: white; /* Light text color */
+    padding: 10px; /* Adjust padding as needed */
+}
+
+.footer-menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+}
+
+.footer-menu li {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.footer-menu li:last-child {
+    margin-right: 0;
+}
+
+.footer-menu a {
+    color: white;
+}
+
+.pi {
+    text-align: center;
+}
+

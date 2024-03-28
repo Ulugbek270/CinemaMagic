@@ -1,0 +1,24 @@
+<a href="{{ cinema.get_absolute_url }}" class="card">
+
+    {% if cinema.photo %}
+    <img height="250" src="{{ cinema.photo.url }}" alt="" class="card-img-top">
+    {% else %}
+    <img height="250px" src="https://forum.endeavouros.com/uploads/default/original/2X/a/ab62dc01f05c1ee26d3c613bc4db6cd953a44b9b.png"
+         class="card-img-top" alt="...">
+    {% endif %}
+
+    <div class="card-body" style="height: 200px">
+        <h5 class="card-title">{{ cinema.title }}</h5>
+        <p class="card-text">{{ cinema.context|truncatechars:200 }}</p>
+    </div>
+
+    <div class="d-flex justify-content-between p-2">
+        <span>{{ cinema.views }}</span>
+        <span>{{ cinema.created_at }}</span>
+    </div>
+
+</a>
+
+
+
+

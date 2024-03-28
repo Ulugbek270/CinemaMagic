@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ title }}
+{% endblock title %}
+
+
+{% block main %}
+
+
+<div class="d-flex justify-content-center mt-4">
+    <div class="col-6 card p-4 bg-dark border-danger">
+        <h3 class="text-center text-light">{{ title }}</h3>
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="form-floating flex-fill mb-4">
+                {{ form.username }}
+                <label for="{{ form.username.id_for_label }}" class="form-label">
+                    Логин
+                </label>
+            </div>
+
+             <div class="form-floating flex-fill mb-4">
+                {{ form.first_name }}
+                <label for="{{ form.first_name.id_for_label }}" class="form-label">
+                    Имя пользователя
+                </label>
+            </div>
+
+
+            <div class="form-floating flex-fill mb-4">
+                {{ form.last_name }}
+                <label for="{{ form.last_name.id_for_label }}" class="form-label">
+                    Фамилия пользователя
+                </label>
+            </div>
+
+
+            <div class="form-floating flex-fill mb-4">
+                {{ form.email }}
+                <label for="{{ form.email.id_for_label }}" class="form-label">
+                    Почта
+                </label>
+            </div>
+
+
+
+
+
+            <div class="form-floating flex-fill mb-4">
+                {{ form.password1 }}
+                <label for="{{ form.password1.id_for_label }}" class="form-label">
+                    Пароль
+                </label>
+            </div>
+
+
+            <div class="form-floating flex-fill mb-4">
+                {{ form.password2 }}
+                <label for="{{ form.password2.id_for_label }}" class="form-label">
+                    Подтвердите пароль
+                </label>
+            </div>
+
+
+
+
+
+            <div class="d-flex justify-content-between mt-4">
+            <a href="{% url 'index' %}" class="btn btn-success">Назад</a>
+
+            <button type="submit" class="btn btn-secondary">
+                Зарегистрироваться
+            </button>
+
+            </div>
+
+        </form>
+    </div>
+</div>
+
+
+
+{% endblock main %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
